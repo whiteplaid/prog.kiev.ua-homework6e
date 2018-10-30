@@ -50,49 +50,37 @@ public class FileWatcher implements Runnable{
 
 	private int getFileCount () {
 		StringBuilder sb = new StringBuilder();
-
 		File[] fileArray = this.mainFolder.listFiles();
 		int filesCount = fileArray.length;
 		for (File file : fileArray) {
-
 			sb.append(file.getName() + "\t" + file.length()).append(System.lineSeparator());
-
-			
 		}
 		if (sb.length() > sbnew.length()) {
 			for (int i = 0; i < fileMainArray.length;i++) {
 				for (int j = 0; j < filesCount; j++) {
-					
-				
-				if (!fileMainArray[i].getName().equals(fileArray[j].getName())) {
-					changed = fileArray[j].getName() + "\t" + fileArray[j].length();
-				}
+					if (!fileMainArray[i].getName().equals(fileArray[j].getName())) {
+						changed = fileArray[j].getName() + "\t" + fileArray[j].length();
+					}
 				}
 			}
-			
 				System.out.println("new file" + " " + changed);
 				System.out.println();
-
 		} else  
 		if (sb.length() < sbnew.length()) {
 			for (int i = 0; i < filesCount;i++) {
 				for (int j = 0; j < fileMainArray.length; j++) {
-					
-				
-				if (!fileArray[i].getName().equals(fileMainArray[j].getName())) {
-					changed = fileMainArray[j].getName() + "\t" + fileMainArray[j].length();
-				}
+					if (!fileArray[i].getName().equals(fileMainArray[j].getName())) {
+						changed = fileMainArray[j].getName() + "\t" + fileMainArray[j].length();
+					}
 				}
 			}
 				System.out.println("deleted file" + " " + changed);
 				System.out.println();
-			
 		}
 		return filesCount;
 	}
 	private String getFolderInfo() {
 		if (mainFolder == null) return "None";
-		//StringBuilder sb = new StringBuilder();
 		fileMainArray = this.mainFolder.listFiles();
 		
 		for (File file : fileMainArray) {
@@ -107,9 +95,6 @@ public class FileWatcher implements Runnable{
 	@Override
 	public void run() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd:MM:yyyy   hh:mm:ss");
-
-
-		
 		System.out.println(sdf.format(System.currentTimeMillis()));
 		System.out.println(getFolderInfo());
 		System.out.println();
@@ -129,12 +114,8 @@ public class FileWatcher implements Runnable{
 				break;
 			}
 
-			
 		}
-//		System.out.println(sdf.format(System.currentTimeMillis()));
-//		System.out.println(getFolderInfo());
-//		System.out.println();
+
 	}
-	
 	
 }
